@@ -70,7 +70,7 @@ function Get-RdcmanFileForOu {
 			Export "</properties>" $indent1
 			
 			Export-Comps "structure" $name $child.Computers $indent1
-			Export-Children $child $indent1
+			Export-OuChildren $child $indent1
 			
 			Export "</group>" $indent0
 		}
