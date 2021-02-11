@@ -55,7 +55,9 @@ function Get-RdcmanFileForOu {
 	}
 	
 	function Export-OuChildren($object, $indent) {
-		$children = $object.Children | Sort OU.Name
+		# https://www.reddit.com/r/PowerShell/comments/8fcer9/sort_object_on_subproperty/
+		$children = $object.Children | Sort -Property { $_.OU.Name }
+		
 		foreach($child in $children) {
 			$indent1 = $indent + 1
 			
