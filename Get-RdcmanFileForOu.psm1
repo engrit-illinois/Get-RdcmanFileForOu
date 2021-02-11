@@ -65,7 +65,7 @@ function Get-RdcmanFileForOu {
 			
 			Export "<group><properties><expanded>False</expanded><name>$name</name><comment>Child OUs of $name OU</comment></properties>" $indent
 			
-			$comps = ($child.Computer).Name | Sort
+			$comps = ($child.Computers).Name | Sort
 			Export-Comps $name $comps $indent1
 			Export-OuChildren $child $indent1
 			
