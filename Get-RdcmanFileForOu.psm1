@@ -7,7 +7,7 @@ function Get-RdcmanFileForOu {
 		[Parameter(Position=1,Mandatory=$true)]
 		[string]$OutputFilePath,
 		
-		[ValidateSet("FlatMachines","SmartGroupsFlat","SmartGroupsGrouped","MirrorOuStructure")]
+		[ValidateSet("FlatComputers","SmartGroupsFlat","SmartGroupsGrouped","MirrorOuStructure")]
 		[string]$OutputFormat = "MirrorOuStructure",
 		
 		[int]$MinLabSizeForSmartGroups = 2,
@@ -31,18 +31,18 @@ function Get-RdcmanFileForOu {
 		
 		# Write a group containing smart groups for each lab
 		switch($OutputFormat) {
-			"FlatMachines" {
-				Export-Comps "all" $ou $comps 2
+			"FlatComputers" {
+				Export-Comps $ou $comps 2
 			}
 			"SmartGroupsFlat" {
 				Export-SmartGroups $labs 2
-				Export-Comps "all" $ou $comps 2
+				Export-Comps $ou $comps 2
 			}
 			"SmartGroupsGrouped" {
 				Export-LabGroups $labs $comps
 			}
 			"MirrorOuStructure" {
-				Export-OuGroups 1
+				Export-OuGroups 2
 			}
 		}
 		
@@ -57,18 +57,17 @@ function Get-RdcmanFileForOu {
 	function Export-OuChildren($object, $indent) {
 		$children = $object.Children | Sort Name
 		foreach($child in $children) {
-			$indent0 = $indent + 1
-			$indent1 = $indent + 2
+			$indent1 = $indent + 1
 			
 			$name = $child.OU.Name
 			
-			Export "<group><properties><expanded>False</expanded><name>$name</name><comment>Child OUs of $name OU</comment></properties>" $indent0
+			Export "<group><properties><expanded>False</expanded><name>$name</name><comment>Child OUs of $name OU</comment></properties>" $indent
 			
 			$comps = ($child.Computer).Name | Sort
-			Export-Comps "structure" $name $child.Computers $indent1
-			Export-OuChildren $child $indent0
+			Export-Comps $name $child.Computers $indent1
+			Export-OuChildren $child $indent
 			
-			Export "</group>" $indent0
+			Export "</group>" $indent
 		}
 	}
 	
@@ -103,7 +102,7 @@ function Get-RdcmanFileForOu {
 			Export-SmartGroups $labGroupLabs 4
 			
 			$labComps = $comps | Where { $_ -like "$labGroup-*" } | Sort Name
-			Export-Comps "lab" $labGroup $labComps 4
+			Export-Comps $labGroup $labComps 4 "lab"
 			
 			Export "</group>" 3
 		}
@@ -124,19 +123,12 @@ function Get-RdcmanFileForOu {
 		}
 	}
 	
-	function Export-Comps($type,$group,$comps,$indent) {
+	function Export-Comps($group,$comps,$indent,$type) {
 		$indent1 = $indent + 1
 		
-		switch($type) {
-			"all" {
-				$groupName = "All $group OU machines"
-			}
-			"lab" {
-				$groupName = "All $group machines"
-			}
-			"structure" {
-				$groupName = "Computers in $group OU"
-			}
+		$groupName = "All $group OU computers"
+		if($type -eq "lab") {
+			$groupName = "All $group computers"
 		}
 		
 		# Start writing a group to contain all comps
@@ -205,7 +197,7 @@ function Get-RdcmanFileForOu {
 		$labs = $labs | Select -Unique | Sort
 		
 		# Filter out labs that are smaller than the given size
-		# So we don't have a bunch of smart groups for one-off machines
+		# So we don't have a bunch of smart groups for one-off computers
 		$filteredLabs = $labs
 		foreach($lab in $labs) {
 			$compsInLab = $comps | Where { $_ -like "$($lab)*" }
