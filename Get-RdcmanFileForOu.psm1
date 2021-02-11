@@ -55,7 +55,8 @@ function Get-RdcmanFileForOu {
 	}
 	
 	function Export-OuChildren($object, $indent) {
-		foreach($child in $object.Children) {
+		$children = $object.Children | Sort Name
+		foreach($child in $children) {
 			$indent0 = $indent + 1
 			$indent1 = $indent + 2
 			
@@ -63,6 +64,7 @@ function Get-RdcmanFileForOu {
 			
 			Export "<group><properties><expanded>False</expanded><name>$name</name><comment>Child OUs of $name OU</comment></properties>" $indent0
 			
+			$comps = ($child.Computer).Name | Sort
 			Export-Comps "structure" $name $child.Computers $indent1
 			Export-OuChildren $child $indent0
 			
