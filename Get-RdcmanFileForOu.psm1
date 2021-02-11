@@ -42,7 +42,7 @@ function Get-RdcmanFileForOu {
 				Export-LabGroups $labs $comps
 			}
 			"MirrorOuStructure" {
-				Export-OuGroups 2
+				Export-OuGroups 1
 			}
 		}
 		
@@ -58,16 +58,10 @@ function Get-RdcmanFileForOu {
 		foreach($child in $object.Children) {
 			$indent0 = $indent + 1
 			$indent1 = $indent + 2
-			$indent2 = $indent + 3
 			
 			$name = $child.OU.Name
 			
-			Export "<group>" $indent0
-			Export "<properties>" $indent1
-			Export "<expanded>False</expanded>" $indent2
-			Export "<name>$name</name>" $indent2
-			Export "<comment>Child OUs of $name OU</comment>" $indent2
-			Export "</properties>" $indent1
+			Export "<group><properties><expanded>False</expanded><name>$name</name><comment>Child OUs of $name OU</comment></properties>" $indent0
 			
 			Export-Comps "structure" $name $child.Computers $indent1
 			Export-OuChildren $child $indent0
@@ -87,7 +81,7 @@ function Get-RdcmanFileForOu {
 				throw "No object received from Get-ADOUStructureObject!"
 			}
 			else {
-				Export-OuChildren $object ($indent + 1)
+				Export-OuChildren $object $indent
 			}
 		}
 	}

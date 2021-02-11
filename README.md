@@ -6,6 +6,7 @@ Optionally organizes groups or smart groups differently depending on the paramet
 # Usage
 1. Download `Get-RdcmanFileForOu.psm1`.
 2. Download dependency `Get-ADOUStructureObject.psm1` from [here](https://github.com/engrit-illinois/Get-RdcmanFileForOu).
+  - Only required for default value of `-OutputFormat` (`MirrorOuStructure`).
 3. Import both files as modules:
   - `Import-Module "c:\path\to\Get-RdcmanFileForOu.psm1"`
   - `Import-Module "c:\path\to\Get-ADOUStructureObject.psm1"`
