@@ -47,8 +47,8 @@ Default is `MirrorOuStructure`.
 ### -MinLabSizeForSmartGroups \<int\>
 Optional integer.  
 The minimum number of discovered computers which must share a name prefix (e.g. `MEL-1001-`) for an associated smart group to be created.  
+Only relevant for `-OutputFormat` values of `SmartGroupsFlat` and `SmartGroupsGrouped`.  
 Default is `2`.  
-The pre-made file above was generated using a value of `3`.  
 
 # Notes
 - RDCMan is [discontinued](https://www.zdnet.com/article/microsoft-discontinues-rdcman-app-following-security-bug/) and the download is no longer even hosted by Microsoft. However it is still perfectly functional, incredibly useful and powerful, and there is no modern replacement for it.
