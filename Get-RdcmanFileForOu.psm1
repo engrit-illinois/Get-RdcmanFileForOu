@@ -55,22 +55,21 @@ function Get-RdcmanFileForOu {
 	}
 	
 	function Export-OuChildren($object, $indent) {
+		$indent1 = $indent + 1
+		
+		$name = $object.OU.Name
+		Export "<group><properties><expanded>False</expanded><name>$name</name><comment>Child OUs of $name OU</comment></properties>" $indent
+		
+		$comps = ($object.Computers).Name | Sort
+		Export-Comps $name $comps $indent1 "ouStructure"
+		
 		# https://www.reddit.com/r/PowerShell/comments/8fcer9/sort_object_on_subproperty/
 		$children = $object.Children | Sort -Property { $_.OU.Name }
-		
 		foreach($child in $children) {
-			$indent1 = $indent + 1
-			
-			$name = $child.OU.Name
-			
-			Export "<group><properties><expanded>False</expanded><name>$name</name><comment>Child OUs of $name OU</comment></properties>" $indent
-			
-			$comps = ($child.Computers).Name | Sort
-			Export-Comps $name $comps $indent1
 			Export-OuChildren $child $indent1
-			
-			Export "</group>" $indent
 		}
+		
+		Export "</group>" $indent
 	}
 	
 	function Export-OuGroups($indent) {
@@ -129,12 +128,19 @@ function Get-RdcmanFileForOu {
 		$indent1 = $indent + 1
 		
 		$groupName = "All $group OU computers"
-		if($type -eq "lab") {
-			$groupName = "All $group computers"
+		switch($type) {
+			"lab" {
+				$groupName = "All $group computers"
+			}
+			"ouStructure" {
+				$indent1 = $indent
+			}
 		}
 		
 		# Start writing a group to contain all comps
-		Export "<group><properties><expanded>False</expanded><name>$groupName</name></properties>" $indent
+		if($type -ne "ouStructure") {
+			Export "<group><properties><expanded>False</expanded><name>$groupName</name></properties>" $indent
+		}
 		
 		# For each comp
 		foreach($comp in $comps) {
@@ -143,7 +149,9 @@ function Get-RdcmanFileForOu {
 		}
 		
 		# Write the end of the group
-		Export "</group>" $indent
+		if($type -ne "ouStructure") {
+			Export "</group>" $indent
+		}
 	}
 	
 	function Export($string, $indentSize=0, $append=$true) {
