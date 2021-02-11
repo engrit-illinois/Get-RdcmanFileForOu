@@ -47,7 +47,7 @@ Default is `MirrorOuStructure`.
 ### -MinLabSizeForSmartGroups \<int\>
 Optional integer.  
 The minimum number of discovered computers which must share a name prefix (e.g. `MEL-1001-`) for an associated smart group to be created.  
-Only relevant for `-OutputFormat` values of `SmartGroupsFlat` and `SmartGroupsGrouped`.  
+Only relevant when `-OutputFormat` is `SmartGroupsFlat`, due to the way RDCMan grouping works.  
 Default is `2`.  
 
 # Notes
