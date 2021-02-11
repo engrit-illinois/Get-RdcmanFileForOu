@@ -7,10 +7,8 @@ Optionally organizes groups or smart groups differently depending on the paramet
 1. Download `Get-RdcmanFileForOu.psm1`.
 2. Download dependency `Get-ADOUStructureObject.psm1` from [here](https://github.com/engrit-illinois/Get-RdcmanFileForOu).
 3. Import both files as modules:
-  - ```
-Import-Module "c:\path\to\Get-RdcmanFileForOu.psm1"
-Import-Module "c:\path\to\Get-ADOUStructureObject.psm1"
-```
+  - `Import-Module "c:\path\to\Get-RdcmanFileForOu.psm1"`
+  - `Import-Module "c:\path\to\Get-ADOUStructureObject.psm1"`
 4. Run it using the examples provided below.
 
 # Examples
