@@ -1,5 +1,5 @@
 # By mseng3
-function Get-RdcmanFileForLabs {
+function Get-RdcmanFileForOu {
 	param(
 		[Parameter(Position=0,Mandatory=$true)]
 		[string]$OUDN,
