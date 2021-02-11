@@ -55,7 +55,7 @@ function Get-RdcmanFileForOu {
 	}
 	
 	function Export-OuChildren($object, $indent) {
-		$children = $object.Children | Sort Name
+		$children = $object.Children | Sort OU.Name
 		foreach($child in $children) {
 			$indent1 = $indent + 1
 			
