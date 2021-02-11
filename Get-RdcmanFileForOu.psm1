@@ -58,7 +58,7 @@ function Get-RdcmanFileForOu {
 		$indent1 = $indent + 1
 		
 		$name = $object.OU.Name
-		Export "<group><properties><expanded>False</expanded><name>$name</name><comment>Child OUs of $name OU</comment></properties>" $indent
+		Export "<group><properties><expanded>False</expanded><name>$name</name></properties>" $indent
 		
 		$comps = ($object.Computers).Name | Sort
 		Export-Comps $name $comps $indent1 "ouStructure"
