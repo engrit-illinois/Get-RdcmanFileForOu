@@ -6,21 +6,21 @@ Optionally organizes groups or smart groups differently depending on the paramet
 # Usage
 1. Download `Get-RdcmanFileForOu.psm1`.
 2. Download dependency `Get-ADOUStructureObject.psm1` from [here](https://github.com/engrit-illinois/Get-RdcmanFileForOu).
-  - Only required for default value of `-OutputFormat` (`MirrorOuStructure`).
+    - Only required for default value of `-OutputFormat` (`MirrorOuStructure`).
 3. Import both files as modules:
-  - `Import-Module "c:\path\to\Get-RdcmanFileForOu.psm1"`
-  - `Import-Module "c:\path\to\Get-ADOUStructureObject.psm1"`
+    - `Import-Module "c:\path\to\Get-RdcmanFileForOu.psm1"`
+    - `Import-Module "c:\path\to\Get-ADOUStructureObject.psm1"`
 4. Run it using the examples provided below.
 
 # Examples
 - A single group containing all machines in a flat structure:
-  - `Get-RdcmanFileForLabs -OUDN "OU=Instructional,OU=Desktops,OU=Engineering,OU=Urbana,DC=ad,DC=uillinois,DC=edu" -OutputFilePath "C:\ews-rdcman-file.rdg" -OutputFormat "FlatMachines" -MinLabSizeForSmartGroups 3`
+    - `Get-RdcmanFileForLabs -OUDN "OU=Instructional,OU=Desktops,OU=Engineering,OU=Urbana,DC=ad,DC=uillinois,DC=edu" -OutputFilePath "C:\ews-rdcman-file.rdg" -OutputFormat "FlatMachines" -MinLabSizeForSmartGroups 3`
 - A single group containing all machines in a flat structure, and adjacent to that group, a flat list of smart groups, which search for machines named like `<string>-<string>-*`:
-  - `Get-RdcmanFileForLabs -OUDN "OU=Instructional,OU=Desktops,OU=Engineering,OU=Urbana,DC=ad,DC=uillinois,DC=edu" -OutputFilePath "C:\ews-rdcman-file.rdg" -OutputFormat "SmartGroupsFlat" -MinLabSizeForSmartGroups 3`
+    - `Get-RdcmanFileForLabs -OUDN "OU=Instructional,OU=Desktops,OU=Engineering,OU=Urbana,DC=ad,DC=uillinois,DC=edu" -OutputFilePath "C:\ews-rdcman-file.rdg" -OutputFormat "SmartGroupsFlat" -MinLabSizeForSmartGroups 3`
 - Smart groups which search for machines named like `<string>-<string>-*`, grouped into groups which contain smart groups named like `<string>-*`. Each group named like `<string>` contains a single group with all computers named like `<string>-*-*`:
-  - `Get-RdcmanFileForLabs -OUDN "OU=Instructional,OU=Desktops,OU=Engineering,OU=Urbana,DC=ad,DC=uillinois,DC=edu" -OutputFilePath "C:\ews-rdcman-file.rdg" -OutputFormat "SmartGroupsGrouped"`
+    - `Get-RdcmanFileForLabs -OUDN "OU=Instructional,OU=Desktops,OU=Engineering,OU=Urbana,DC=ad,DC=uillinois,DC=edu" -OutputFilePath "C:\ews-rdcman-file.rdg" -OutputFormat "SmartGroupsGrouped"`
 - COMING SOON: Regular groups and computers in a structure mirroring that of the given OU:
-  - `Get-RdcmanFileForLabs -OUDN "OU=Instructional,OU=Desktops,OU=Engineering,OU=Urbana,DC=ad,DC=uillinois,DC=edu" -OutputFilePath "C:\ews-rdcman-file.rdg" -OutputFormat "MirrorOuStructure"`
+    - `Get-RdcmanFileForLabs -OUDN "OU=Instructional,OU=Desktops,OU=Engineering,OU=Urbana,DC=ad,DC=uillinois,DC=edu" -OutputFilePath "C:\ews-rdcman-file.rdg" -OutputFormat "MirrorOuStructure"`
 
 # Parameters
 
