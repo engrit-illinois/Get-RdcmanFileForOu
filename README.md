@@ -4,13 +4,10 @@ Outputs an RDG file (for use with RDCMan) with a group structure mimicking the O
 Optionally organizes groups or smart groups differently depending on the parameters specified.  
 
 # Usage
-1. Download `Get-RdcmanFileForOu.psm1`.
-2. Download dependency `Get-ADOUStructureObject.psm1` from [here](https://github.com/engrit-illinois/Get-RdcmanFileForOu).
+1. Download `Get-RdcmanFileForOu.psm1` to `$HOME\Documents\WindowsPowerShell\Modules\Get-RdcmanFileForOu\Get-RdcmanFileForOu.psm1`
+2. Download dependency `Get-ADOUStructureObject.psm1` from [here](https://github.com/engrit-illinois/Get-ADOUStructureObject) to `$HOME\Documents\WindowsPowerShell\Modules\Get-ADOUStructureObject\Get-ADOUStructureObject.psm1`.
     - Only required for default value of `-OutputFormat` (`MirrorOuStructure`).
-3. Import both files as modules:
-    - `Import-Module "c:\path\to\Get-RdcmanFileForOu.psm1"`
-    - `Import-Module "c:\path\to\Get-ADOUStructureObject.psm1"`
-4. Run it using the examples provided below.
+3. Run it using the examples provided below.
 
 # Examples
 - Regular groups and computers in a structure mirroring that of the given OU:
