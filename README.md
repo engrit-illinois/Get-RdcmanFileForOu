@@ -11,13 +11,13 @@ Optionally organizes groups or smart groups differently depending on the paramet
 
 # Examples
 - Regular groups and computers in a structure mirroring that of the given OU:
-    - `Get-RdcmanFileForLabs -OUDN "OU=Instructional,OU=Desktops,OU=Engineering,OU=Urbana,DC=ad,DC=uillinois,DC=edu" -OutputFilePath "C:\ews-rdcman-file.rdg" -OutputFormat "MirrorOuStructure"`
+    - `Get-RdcmanFileForOu -OUDN "OU=Instructional,OU=Desktops,OU=Engineering,OU=Urbana,DC=ad,DC=uillinois,DC=edu" -OutputFilePath "C:\ews-rdcman-file.rdg" -OutputFormat "MirrorOuStructure"`
 - Smart groups which search for machines named like `<string>-<string>-*`, grouped into groups which contain smart groups named like `<string>-*`. Each group named like `<string>` contains a single group with all computers named like `<string>-*-*`:
-    - `Get-RdcmanFileForLabs -OUDN "OU=Instructional,OU=Desktops,OU=Engineering,OU=Urbana,DC=ad,DC=uillinois,DC=edu" -OutputFilePath "C:\ews-rdcman-file.rdg" -OutputFormat "SmartGroupsGrouped"`
+    - `Get-RdcmanFileForOu -OUDN "OU=Instructional,OU=Desktops,OU=Engineering,OU=Urbana,DC=ad,DC=uillinois,DC=edu" -OutputFilePath "C:\ews-rdcman-file.rdg" -OutputFormat "SmartGroupsGrouped"`
 - A single group containing all machines in a flat structure, and adjacent to that group, a flat list of smart groups, which search for machines named like `<string>-<string>-*`:
-    - `Get-RdcmanFileForLabs -OUDN "OU=Instructional,OU=Desktops,OU=Engineering,OU=Urbana,DC=ad,DC=uillinois,DC=edu" -OutputFilePath "C:\ews-rdcman-file.rdg" -OutputFormat "SmartGroupsFlat" -MinLabSizeForSmartGroups 3`
+    - `Get-RdcmanFileForOu -OUDN "OU=Instructional,OU=Desktops,OU=Engineering,OU=Urbana,DC=ad,DC=uillinois,DC=edu" -OutputFilePath "C:\ews-rdcman-file.rdg" -OutputFormat "SmartGroupsFlat" -MinLabSizeForSmartGroups 3`
 - A single group containing all machines in a flat structure:
-    - `Get-RdcmanFileForLabs -OUDN "OU=Instructional,OU=Desktops,OU=Engineering,OU=Urbana,DC=ad,DC=uillinois,DC=edu" -OutputFilePath "C:\ews-rdcman-file.rdg" -OutputFormat "FlatMachines" -MinLabSizeForSmartGroups 3`
+    - `Get-RdcmanFileForOu -OUDN "OU=Instructional,OU=Desktops,OU=Engineering,OU=Urbana,DC=ad,DC=uillinois,DC=edu" -OutputFilePath "C:\ews-rdcman-file.rdg" -OutputFormat "FlatMachines" -MinLabSizeForSmartGroups 3`
 
 # Parameters
 
