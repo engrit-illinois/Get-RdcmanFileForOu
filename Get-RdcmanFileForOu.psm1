@@ -73,6 +73,8 @@ function Get-RdcmanFileForOu {
 	}
 	
 	function Export-OuGroups($indent) {
+		Import-Module "Get-ADOUStructureObject" -Force
+		
 		# Check if custom Get-ADOUStructureObject module is imported
 		if((Get-Module "Get-ADOUStructureObject") -eq $null) {
 			throw "Get-ADOUStructureObject module not imported!"
