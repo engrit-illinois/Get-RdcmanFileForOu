@@ -52,6 +52,9 @@ Default is `2`.
 
 # Notes
 - RDCMan is [discontinued](https://www.zdnet.com/article/microsoft-discontinues-rdcman-app-following-security-bug/) and the download is no longer even hosted by Microsoft. However it is still perfectly functional, incredibly useful and powerful, and there is no modern replacement for it.
+  - Update: There's a new version of RDCMan now, which solves the vulnerability.
+    - https://dirteam.com/sander/2021/06/24/remote-desktop-connection-manager-rdcman-is-back/
+    - https://docs.microsoft.com/en-us/sysinternals/downloads/rdcman
 - For whatever reason, RDCMan has a seemingly arbitrary built-in limitation where the GUI will not allow you to add computers and groups (or smart groups) adjacent to each other in the group hierarchy. It _will_ however read an RDG file with such a mixed structure without issue (why Microsoft!?). I guess you can't expect too much from a 10+ year old app which has been abandoned for 7 years.
 - An additional limitation (or rather a design decision) which makes the code more complex, is that smart groups will only search for matching computers which are _adjacent to_ or _below_ them in the group hierarchy.
 - Yet another idiosyncrasy of RDCMan is that selecting any given group will display (int he right pane) computers in that group _and_ computers in any immediate child groups, but not computers any further down the hierarchy.
