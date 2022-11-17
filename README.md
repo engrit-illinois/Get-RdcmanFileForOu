@@ -4,8 +4,8 @@ Outputs an RDG file (for use with RDCMan) with a group structure mimicking the O
 Optionally organizes groups or smart groups differently depending on the parameters specified.  
 
 # Usage
-1. Download `Get-RdcmanFileForOu.psm1` to `$HOME\Documents\WindowsPowerShell\Modules\Get-RdcmanFileForOu\Get-RdcmanFileForOu.psm1`
-2. Download dependency `Get-ADOUStructureObject.psm1` from [here](https://github.com/engrit-illinois/Get-ADOUStructureObject) to `$HOME\Documents\WindowsPowerShell\Modules\Get-ADOUStructureObject\Get-ADOUStructureObject.psm1`.
+1. Download `Get-RdcmanFileForOu.psm1` to the appropriate subdirectory of your PowerShell [modules directory](https://github.com/engrit-illinois/how-to-install-a-custom-powershell-module).
+2. Download dependency `Get-ADOUStructureObject.psm1` from [here](https://github.com/engrit-illinois/Get-ADOUStructureObject) to the appropriate subdirectory of your PowerShell [modules directory](https://github.com/engrit-illinois/how-to-install-a-custom-powershell-module).
     - Only required for default value of `-OutputFormat` (`MirrorOuStructure`).
 3. Run it using the examples provided below.
 
