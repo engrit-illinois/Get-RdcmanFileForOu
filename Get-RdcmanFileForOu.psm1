@@ -80,7 +80,7 @@ function Get-RdcmanFileForOu {
 			throw "Get-ADOUStructureObject module not imported!"
 		}
 		else {
-			$object = Get-ADOUStructureObject -OUDN $OUDN -Silent -OutputObject
+			$object = Get-ADOUStructureObject -OUDN $OUDN -IncludeComputers -Silent -OutputObject
 			if(!$object) {
 				throw "No object received from Get-ADOUStructureObject!"
 			}
